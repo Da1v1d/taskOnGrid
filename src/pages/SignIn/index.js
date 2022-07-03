@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import SignInForm from './SignInForm';
 import SignInHeader from './SignInHeader';
 
@@ -10,21 +10,28 @@ const SignIn = () => {
       data.get('email') !== 'user@mail.com' ||
       data.get('password') !== 'user'
     ) {
-      alert('wrong does not exist');
-    }
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+      alert('user does not exist');
+    } else
+      console.log({
+        email: data.get('email'),
+        password: data.get('password'),
+      });
   };
 
   return (
-    <>
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '100vh',
+      }}
+    >
       <Stack spacing={2} sx={{ width: '400px' }}>
         <SignInHeader />
         <SignInForm handleSubmit={handleSubmit} />
       </Stack>
-    </>
+    </Box>
   );
 };
 

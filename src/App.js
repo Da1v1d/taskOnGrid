@@ -6,6 +6,7 @@ function App() {
   return (
     <div className='App'>
       {localStorage.getItem('isAuth') === 'true' ? <DashBoard /> : <SignIn />}
+      {/* <DashBoard /> */}
     </div>
   );
 }
