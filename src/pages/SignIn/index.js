@@ -1,23 +1,11 @@
 import { Box, Stack } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import SignInForm from './SignInForm';
 import SignInHeader from './SignInHeader';
+import { handleSubmit } from './utils';
 
 const SignIn = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    if (
-      data.get('email') !== 'user@mail.com' ||
-      data.get('password') !== 'user'
-    ) {
-      alert('user does not exist');
-    } else
-      console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-      });
-  };
-
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -29,7 +17,7 @@ const SignIn = () => {
     >
       <Stack spacing={2} sx={{ width: '400px' }}>
         <SignInHeader />
-        <SignInForm handleSubmit={handleSubmit} />
+        <SignInForm handleSubmit={(e) => handleSubmit(e, navigate)} />
       </Stack>
     </Box>
   );

@@ -1,13 +1,14 @@
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
-import DashBoard from './pages/DashBoard';
-import SignIn from './pages/SignIn';
+import { RoutesComponent } from './Routes/Routes';
 
 function App() {
   return (
-    <div className='App'>
-      {localStorage.getItem('isAuth') === 'true' ? <DashBoard /> : <SignIn />}
-      {/* <DashBoard /> */}
-    </div>
+    <BrowserRouter>
+      <div className='App'>
+        <RoutesComponent />
+      </div>
+    </BrowserRouter>
   );
 }
 

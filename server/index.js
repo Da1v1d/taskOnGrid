@@ -1,24 +1,25 @@
-import express from 'express';
-import cors from 'cors';
+const express = require('express');
+const cors = require('cors');
 
 const app = express();
 const PORT = 5000;
 
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors());
+app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.status(201).send('hi');
+app.get('/dashboard', (req, res) => {
+  res.status(201).json({ data: 7 });
 });
 
-app.post('/signIn', (req, res) => {
+app.post('/', async (req, res) => {
   const { email, password } = req.body;
   try {
-    if (email !== 'user@mail.com' && password !== 'user') {
-      res.status(400).send('user does not exist')
+    if (email !== 'user@mail.com' || password !== 'user') {
+      return res.status(400).send('user does not exist');
     }
-    res.status(200).send('welcome user')
+    res.status(200).send('welcome user');
   } catch (e) {
-    console.log(e)
+    res.status(500).send(e.message);
   }
 });
 
