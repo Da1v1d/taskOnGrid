@@ -7,8 +7,9 @@ export const RoutesComponent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.getItem('isAuth') === 'false' && navigate('/');
-    localStorage.getItem('isAuth') === 'true' && navigate('/dashboard');
+    if (localStorage.getItem('isAuth') === 'false') {
+      navigate('/');
+    } else navigate('/dashboard');
   }, []);
 
   return (
