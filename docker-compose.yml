@@ -1,0 +1,17 @@
+version: '3'
+services:
+  app:
+    build: ./
+
+  ingress:
+    build: ./ingress/
+    ports:
+      - 80:80
+    restart: on-failure
+    depends_on:
+      - app
+      - server
+
+  server:
+    build: ./server/
+
